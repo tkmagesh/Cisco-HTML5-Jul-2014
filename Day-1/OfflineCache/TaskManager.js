@@ -1,14 +1,25 @@
 
 	window.addEventListener("DOMContentLoaded", init);
+	
 	function init(){
 		document.getElementById("btnAddTask").addEventListener("click",onBtnAddTaskClick);
 		document.getElementById("btnRemoveCompleted").addEventListener("click",onBtnRemoveCompletedClick);
 		var allTasks = taskStorage.getAll();
-		console.log(allTasks);
 		for(var i=0;i<allTasks.length;i++){
 			
 			addTaskToUi(allTasks[i]);
 		}
+
+		document.getElementById("btnYes").addEventListener("click", onBtnYesClick);
+		document.getElementById("btnNo").addEventListener("click", onBtnNoClick);
+
+
+	}
+	function onBtnYesClick(){
+		window.location.reload();
+	}
+	function onBtnNoClick(){
+		document.getElementById("divCacheUpdate").style.display = "none";
 	}
 	function onBtnAddTaskClick(){
 		

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="app.manifest">
 <head>
 	<meta charset="UTF-8">
 	<title>Task Manager</title>
@@ -9,14 +9,21 @@
 	<script src="TaskManager.js"></script>
 </head>
 <body>
-	<h1>Task Manager</h1>
+	<h1>Task Manager - Ver 1.4</h1>
 	
 	<span>Task :</span>
 	<input type="text" name="" id="txtTask">
 	<input type="button" value="Add Task" id="btnAddTask">
 	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
 	<ul id="ulTaskList"></ul>
-
-	
+	<div id="divCacheUpdate">
+		A new version of the application is available. Do you want to use it?
+		<input type="button" value=" Yes " id="btnYes"><input type="button" value="  No  " id="btnNo">
+	</div>
+	<script type="text/javascript">
+	window.applicationCache.addEventListener("updateready", function(){
+			document.getElementById("divCacheUpdate").style.display = "block";
+		});
+	</script>
 </body>
 </html>
