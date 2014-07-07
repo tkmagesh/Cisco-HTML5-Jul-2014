@@ -10,12 +10,14 @@
 	}
 	function onBtnDoWorkClick(){
 		displayMessage("Work started...");
-		doWork();
+		doWork(function(){
+			displayMessage("Work Completed...");		
+		});
 	}
 	function displayMessage(msg){
 		document.getElementById("divMessages").innerHTML += msg + "<br/>";
 	}
-	function doWork(){
+	function doWork(onCompletionCallback){
 		var totalIterations = 1000,
 			currentIteration = 0;
 		function oneIteration(){
@@ -26,7 +28,8 @@
 			if (currentIteration < totalIterations){
 				setTimeout(oneIteration);
 			} else {
-				displayMessage("Work Completed...");		
+				if (typeof onCompletionCallback === "function")
+					onCompletionCallback();
 			}
 		}
 		oneIteration();
