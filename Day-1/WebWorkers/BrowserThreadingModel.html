@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Browser Threading Model</title>
+	<script>
+	window.addEventListener("DOMContentLoaded", init);
+	var worker = new Worker("work.js");
+	worker.addEventListener("message",function(msgArg){
+		console.dir(msgArg);
+		if (msgArg.data === "completed"){
+			displayMessage("Work Completed...");
+		}
+	});
+	function init(){
+		document.getElementById("btnDoWork").addEventListener("click", onBtnDoWorkClick);
+	}
+	function onBtnDoWorkClick(){
+		displayMessage("Work started...");
+		worker.postMessage("start");
+		
+	}
+	function displayMessage(msg){
+		document.getElementById("divMessages").innerHTML += msg + "<br/>";
+	}
+	
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="">
+	<input type="button" value="Do Work" id="btnDoWork">
+	<div id="divMessages"></div>
+</body>
+</html>
