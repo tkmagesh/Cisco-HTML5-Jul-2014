@@ -1,0 +1,12 @@
+LocalStorage
+
+	- Collection of key/value pairs
+	- Both key & value should be strings
+	- The following are the public interfaces
+
+		- void setItem(key,value)
+		- value getItem(key)
+		- void removeItem(key)
+		- length
+		- clear()
+		- key key(index)
