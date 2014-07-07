@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prime Finder</title>
+	<script>
+	window.addEventListener("DOMContentLoaded", init);
+	var worker = new Worker("PrimeFinderWorker.js");
+	worker.addEventListener("message",function(msgArg){
+		var data = msgArg.data;
+		if (data.type === "result"){
+			var dispMsg = data.primeCount + " prime numbers are found";
+			document.getElementById("divMessages").innerHTML = dispMsg;
+		} else if (data.type === "progress"){
+			document.getElementById("progress").value = data.percentCompleted;
+			var dispMsg = data.primeCount + " prime numbers are found";
+			document.getElementById("divMessages").innerHTML = dispMsg;
+		}
+	});
+	function init(){
+		document.getElementById("btnFindPrimes").addEventListener("click",onBtnFindPrimesClick);
+	}
+	function onBtnFindPrimesClick(){
+		var startNumber = parseInt(document.getElementById("txtStart").value,10),
+			endNumber = parseInt(document.getElementById("txtEnd").value,10);
+
+		worker.postMessage({
+			type : "findPrimes",
+			start : startNumber,
+			end : endNumber
+		});
+	}
+	</script>
+</head>
+<body>
+	<label for="">Start :</label>
+	<input type="text" name="" id="txtStart">
+	<label for="">End :</label>
+	<input type="text" name="" id="txtEnd">
+	<input type="button" value="Find Primes" id="btnFindPrimes">
+	<div>
+		<progress id="progress" min="0" max="100" value="0"></progress>
+	</div>
+	<div id="divMessages"></div>
+	<input type="button" value="Test" id="btnTest">
+</body>
+</html>
