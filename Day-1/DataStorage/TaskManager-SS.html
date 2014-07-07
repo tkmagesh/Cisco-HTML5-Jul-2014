@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Manager</title>
+	<style>
+	.completed {
+		color : red;
+		text-decoration: line-through;
+		font-style: italic;
+	}
+	</style>
+	<script>
+	window.addEventListener("DOMContentLoaded", init);
+	function init(){
+		document.getElementById("btnAddTask").addEventListener("click",onBtnAddTaskClick);
+		document.getElementById("btnRemoveCompleted").addEventListener("click",onBtnRemoveCompletedClick);
+		for(var i=0;i<window.sessionStorage.length;i++){
+			var taskId = window.sessionStorage.key(i);
+			var taskName = window.sessionStorage.getItem(taskId);
+			addTaskToUi(taskId, taskName);
+		}
+	}
+	function onBtnAddTaskClick(){
+		var taskId = new Date().getTime().toString();
+		var taskName = document.getElementById('txtTask').value;
+		window.sessionStorage.setItem(taskId, taskName);
+		addTaskToUi(taskId,taskName);
+	}
+	function addTaskToUi(taskId, taskName){
+		var newTask = document.createElement("li");
+		newTask.setAttribute("task-id", taskId);
+		newTask.addEventListener("click", onTaskItemClick);
+		newTask.innerHTML = taskName;
+		document.getElementById("ulTaskList").appendChild(newTask);
+	}
+	function onTaskItemClick(){
+		this.classList.toggle("completed");
+	}
+	function onBtnRemoveCompletedClick(){
+		var taskList = document.getElementById("ulTaskList").children;
+		for(var i=taskList.length-1;i>=0;i--)
+			if (taskList[i].classList.contains("completed")){
+				var taskId = taskList[i].getAttribute("task-id");
+				window.sessionStorage.removeItem(taskId);
+				taskList[i].remove();
+
+			}
+	}
+	</script>
+</head>
+<body>
+	<h1>Task Manager</h1>
+	<hr>
+	<span>Task :</span>
+	<input type="text" name="" id="txtTask">
+	<input type="button" value="Add Task" id="btnAddTask">
+	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
+	<ul id="ulTaskList"></ul>
+
+	
+</body>
+</html>
