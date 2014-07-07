@@ -1,0 +1,28 @@
+HTML5 Features
+1. Data Storage
+	Local Storage
+	Session Storage
+	Indexed Db
+	Web SQL
+
+2. Installation
+	Offline Application Cache
+
+3. Multithreading
+	WebWorkers
+
+4. Real Time Updates
+	Web Sockets
+	Server Sent Events
+
+5. Non textual rendering
+	Canvas
+
+6. Audio/Video
+	Native Audio / Video Apis
+
+7. Mobile Devices
+	New Input Types
+	Geolocations API
+
+	
