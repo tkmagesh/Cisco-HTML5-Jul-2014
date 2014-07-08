@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS 3.0 Demo</title>
+	<style>
+	div{
+		margin: 200px;
+		height: 300px;
+		width: 300px;
+		line-height: 300px;
+		font-size: 28pt;
+		text-align: center;
+	}
+	.content{
+		
+		border: 5px solid black;
+		
+
+		border-radius: 15px ;
+		box-shadow: 0px 0px 0px 10px gray, 0px 0px 0px 20px blue, 0px 0px 0px 30px green;
+		background : -webkit-linear-gradient(top, red 0%, yellow 50%, red 100%);
+		background : -moz-linear-gradient(top, red 0%, yellow 50%, red 100%);
+		background : -ms-linear-gradient(top, red 0%, yellow 50%, red 100%);
+		background : -o-linear-gradient(top, red 0%, yellow 50%, red 100%);
+		background : linear-gradient(top, red 0%, yellow 50%, red 100%);
+
+		-webkit-transition: -webkit-transform 0.5s, opacity 0.5s linear 0.5s;
+	}
+
+	.content:hover{
+		opacity : 0.3;
+		-webkit-transform: rotate(45deg) scale(0.5,0.5);
+	}
+	</style>
+</head>
+<body>
+	<div class="content">CISCO</div>
+	<p class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit consectetur excepturi eveniet veniam qui, repellat iure dolores, maxime placeat iusto delectus quod. Aliquam eveniet quis alias tempore officiis adipisci vel!</p>
+</body>
+</html>
